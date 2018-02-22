@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 const Header = () => {
   console.log("Running function <Header/>");
   return (
-    <div className='navbar'>
-    <span className='navbar-brand'>Chatty</span>
-    </div>
+    <nav className="navbar">
+      <a href="/" className="navbar-brand">Chatty</a>
+    </nav>
   );
 } 
 

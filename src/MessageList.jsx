@@ -7,8 +7,9 @@ class MessageList extends Component {
   render() {    
     console.log("Rendering <Message List/>");
       const messageItems = this.props.messages.map((message) => {
+        const parsedMessage = JSON.parse(message);
         return(
-          <Message key={message.id} message={message}/>
+          <Message key={parsedMessage.id} message={parsedMessage}/>
         )
       });
     return (

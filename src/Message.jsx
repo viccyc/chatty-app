@@ -9,12 +9,23 @@ class Message extends Component {
   }
 
   render() { 
-    return( 
-      <div>
-        <span className="message-username" >{this.props.message.username}</span>
-        <span className="message-content">{this.props.message.content}</span>
-      </div>
-    );
+      if (this.props.message.messageType === "incomingNotification") {
+        return( 
+          <main className="messages">
+            <div className="message system">{this.props.message.content}
+            </div>
+        </main>);            
+      } else {
+        return( 
+          <main className="messages">
+            <div>
+              <span className="message-username">{this.props.message.username}</span>
+              <span className="message-content">{this.props.message.content}</span>
+            </div>
+            <div className="message system">
+            </div>
+          </main>);
+      }
   }
 }
  
