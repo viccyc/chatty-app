@@ -36,8 +36,14 @@ Install the dependencies and start the server.
 * ws
 * uuid
 
-### Static Files
+<!-- ### Static Files
 
 You can store static files like images, fonts, etc in the `build` folder.
 
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
+For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`. -->
+
+### Screenshots
+
+!["Screenshot of chatt app in action"](https://github.com/viccyc/chatty-app/blob/master/docs/Screen%20Shot%202018-02-22%20at%2020.26.48.png)
+!["Keeping track of the number of browsers open"](https://github.com/viccyc/chatty-app/blob/master/docs/Screen%20Shot%202018-02-22%20at%2020.28.01.png)
+!["Letting user know if name changes"](https://github.com/viccyc/chatty-app/blob/master/docs/Screen%20Shot%202018-02-22%20at%2020.31.04.png)
