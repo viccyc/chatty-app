@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import Header from './Header.jsx';
-import Message from './Message.jsx';
 import MessageList from './MessageList.jsx';
 import Chatbar from './Chatbar.jsx';
 
-const socket = new WebSocket("ws://localhost:3001");
+const socket = new WebSocket('ws://localhost:3001');
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = 
-      {currentUser: {name: ""}, // optional. if currentUser is not defined, it means the user is Anonymous
+      {currentUser: {name: ''}, 
         messages: [],
         messageType: '',
         system: '',
@@ -22,8 +21,7 @@ class App extends Component {
   componentDidMount() {
     socket.onmessage = (message) => {
       const parsedMsg =  JSON.parse(message.data);
-      if (parsedMsg.messageType === "count") {
-        // const userMsg = (`${parsedMsg.numClients} users online`);
+      if (parsedMsg.messageType === 'count') {
         this.setState({userCount: parsedMsg.numClients});
       } else {
         const messages = this.state.messages.concat(message.data);

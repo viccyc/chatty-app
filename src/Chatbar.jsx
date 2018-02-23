@@ -27,16 +27,11 @@ class Chatbar extends Component {
   }
 
   onChangeMessage(event) {
-    // if (this.state.messageType !== 'postNotification') {
-    //   this.setState({messageText: event.target.value});
-    //   // this.setState({messageText: event.target.value, messageType: 'postMessage'});
-    // }
     this.setState({messageText: event.target.value});
   }
 
   onChangeUser(event) {
     this.setState({currentUser: event.target.value});
-    // this.setState({currentUser: event.target.value, messageType: 'postNotification'});
   }
 
   render() {

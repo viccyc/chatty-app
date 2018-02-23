@@ -7,7 +7,7 @@ class Message extends Component {
   }
 
   render() { 
-      if (this.props.message.messageType === "incomingNotification") {
+      if (this.props.message.messageType === 'incomingNotification') {
         return( 
           <main className="messages">
             <div className="message system">{this.props.message.content}
