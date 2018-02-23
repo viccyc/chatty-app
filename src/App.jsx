@@ -13,7 +13,8 @@ class App extends Component {
       {currentUser: {name: ""}, // optional. if currentUser is not defined, it means the user is Anonymous
         messages: [],
         messageType: '',
-        system: ''
+        system: '',
+        userCount: 0
       };  
     this.onSubmit = this.onSubmit.bind(this);
    }
@@ -21,32 +22,24 @@ class App extends Component {
   componentDidMount() {
     console.log("ComponentDidMount <App/>");
     socket.onmessage = (message) => {
-      // const parsedMsg = JSON.parse(message.data);
-      // console.log("in App onmessage, state currentuser: ", this.state.currentUser.name);
-      // console.log("in App onmessage, message: ", parsedMsg);
-      // if (parsedMsg.messageType === 'incomingNotification') {
-      //   parsedMsg.system = (`${parsedMsg.username} changed their name to blah..`);
-      // }
-      // console.log("on msg: ", parsedMsg);
-      const messages = this.state.messages.concat(message.data);
-      this.setState({messages: messages});
-      // this.setState({currentUser: parsedMsg.username});
+      const parsedMsg =  JSON.parse(message.data);
+      if (parsedMsg.messageType === "count") {
+        // const userMsg = (`${parsedMsg.numClients} users online`);
+        this.setState({userCount: parsedMsg.numClients});
+      } else {
+        const messages = this.state.messages.concat(message.data);
+        this.setState({messages: messages});      }
     }
   }
 
   onSubmit(message) {
     message.messageType = 'postMessage';
     socket.send(JSON.stringify(message));
-    console.log('Message sent to server', message);
-
-    // check if msg.username is diff to the state.username
-    // if it is, send another message with msgtype 'postNotification' and the content to be the 'system' msg then check in Msg compoent 
-    // console.log('App on submit, anything in current user: ', this.state.currentUser.name);
+    
     if (message.username !== this.state.currentUser.name) {
       message.content = (`${this.state.currentUser.name} changed their name to ${message.username}`);
       message.messageType = 'postNotification';
       socket.send(JSON.stringify(message));
-      console.log('System Message sent to server', message);
 
       const newUser = this.state.currentUser;
       newUser.name = message.username;
@@ -55,13 +48,13 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Header/>
-        <MessageList messages={this.state.messages}/>
-        <Chatbar currentUser={this.state.currentUser.name} onSubmit={this.onSubmit}/>
+      return (
+        <div>
+          <Header userCount={this.state.userCount}/>
+          <MessageList messages={this.state.messages}/>
+          <Chatbar currentUser={this.state.currentUser.name} onSubmit={this.onSubmit}/>
       </div>
-    );
+      );
   }
 }
 
