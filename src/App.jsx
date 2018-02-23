@@ -20,7 +20,6 @@ class App extends Component {
    }
 
   componentDidMount() {
-    console.log("ComponentDidMount <App/>");
     socket.onmessage = (message) => {
       const parsedMsg =  JSON.parse(message.data);
       if (parsedMsg.messageType === "count") {

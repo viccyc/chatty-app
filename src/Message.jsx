@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-console.log("Running function <Message/>");
-
 class Message extends Component {
   constructor(props) {
     super(props);
